@@ -6,7 +6,9 @@
 
         <el-row :gutter="12">
           <el-col :span="20">
-            <slot></slot>
+            <el-row :gutter="12">
+              <slot></slot>
+            </el-row>
           </el-col>
           <el-col :span="4">
             <div class="action">
