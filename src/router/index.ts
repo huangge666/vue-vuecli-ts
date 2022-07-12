@@ -96,6 +96,36 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
     ]
   },
   {
+    path: '/highlights',
+    component: Layout,
+    redirect: '/highlights/list',
+    name: 'Highlights',
+    meta: {
+      title: '风采',
+      icon: 'highlight',
+      // roles: ['admin', 'editor'], // 可以在根路由中设置角色
+      alwaysShow: true // 将始终显示根菜单
+    },
+    children: [
+      {
+        path: 'moduleList',
+        component: () => import('@/views/highlights/moduleList.vue'),
+        name: 'ModuleListHighlights',
+        meta: {
+          title: '模块列表',
+          // roles: ['admin'] // 或者在子导航中设置角色
+        }
+      },{
+        path: "videoList",
+        component: () => import('@/views/highlights/videoList.vue'),
+        name: 'VideoListHighlights',
+        meta: {
+          title: '视频列表',
+        }
+      }
+    ]
+  },
+  {
     path: '/:pathMatch(.*)*', // 必须将 'ErrorPage' 路由放在最后, Must put the 'ErrorPage' route at the end
     component: Layout,
     redirect: '/404',

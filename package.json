@@ -10,12 +10,12 @@
     "deploy": "node ./deploy"
   },
   "dependencies": {
-    "@element-plus/icons-vue": "^1.1.4",
+    "@element-plus/icons-vue": "^2.0.6",
     "@mitojs/browser": "^3.0.1",
     "@mitojs/vue": "^3.0.1",
     "axios": "^0.26.1",
     "dayjs": "^1.11.1",
-    "element-plus": "^2.1.10",
+    "element-plus": "^2.2.9",
     "js-cookie": "^3.0.1",
     "lodash-es": "^4.17.21",
     "normalize.css": "^8.0.1",
