@@ -17,7 +17,11 @@
 <script lang='ts'>
 import { defineComponent, reactive, toRefs, onMounted } from "vue";
 import type { FormInstance, FormRules } from "element-plus";
-import { addBgStyleExhibition } from "@/api/highlight";
+import {
+  getHighlightInfo,
+  addBgStyleExhibition,
+  editBgStyleExhibition,
+} from "@/api/highlight";
 export default defineComponent({
   name: "ModuleDetail",
   props: {
@@ -34,6 +38,7 @@ export default defineComponent({
       show: false,
       dataInfoRef: <FormInstance>{},
       dataInfo: {
+        id: "",
         title: "",
       },
       rules: <FormRules>{
@@ -51,13 +56,18 @@ export default defineComponent({
       if (!props.params?.id) {
         return;
       }
-      console.log("getDataInfo");
+      const { data } = await getHighlightInfo(props.params.id);
+      state.dataInfo = { ...data };
     };
 
     const save = async () => {
       await state.dataInfoRef.validate(async (valid: boolean) => {
         if (valid) {
-          await addBgStyleExhibition(state.dataInfo);
+          if (props.params?.id) {
+            await editBgStyleExhibition(state.dataInfo, props.params.id);
+          } else {
+            await addBgStyleExhibition(state.dataInfo);
+          }
           emit("close");
         } else {
           console.log("error submit!");
