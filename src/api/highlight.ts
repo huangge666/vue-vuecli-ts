@@ -10,7 +10,11 @@ interface IHighlightRequestData {
   orderBy: string;
 }
 
-/** 登录，返回 token */
+interface IBgStyleExhibitionData {
+  title: string;
+}
+
+/** 获取风采列表 */
 export function getHighlightList(params: IHighlightRequestData) {
   return request({
     url: "/bg-style-exhibition",
@@ -18,3 +22,21 @@ export function getHighlightList(params: IHighlightRequestData) {
     params,
   });
 }
+
+/* 新增风采列表 */
+export const addBgStyleExhibition = (data: IBgStyleExhibitionData) =>
+  request({
+    url: "/bg-style-exhibition",
+    method: "POST",
+    data,
+  });
+
+/* 删除风采列表 */
+export const delBgStyleExhibition = (ids: string[]) =>
+  request({
+    url: "/bg-style-exhibition",
+    method: "DELETE",
+    data: {
+      id: ids,
+    },
+  });

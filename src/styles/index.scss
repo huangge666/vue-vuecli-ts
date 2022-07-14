@@ -41,6 +41,11 @@ div:focus {
   outline: none;
 }
 
+.el-overlay {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  backdrop-filter: blur(3px);
+}
+
 .justify-end {
   justify-content: flex-end;
 }
