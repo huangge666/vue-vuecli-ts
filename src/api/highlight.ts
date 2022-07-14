@@ -23,10 +23,29 @@ export function getHighlightList(params: IHighlightRequestData) {
   });
 }
 
+/** 获取风采详情 */
+export function getHighlightInfo(id: string) {
+  return request({
+    url: `/bg-style-exhibition/${id}`,
+    method: "GET",
+  });
+}
+
 /* 新增风采列表 */
 export const addBgStyleExhibition = (data: IBgStyleExhibitionData) =>
   request({
     url: "/bg-style-exhibition",
+    method: "POST",
+    data,
+  });
+
+/* 编辑风采列表 */
+export const editBgStyleExhibition = (
+  data: IBgStyleExhibitionData,
+  id: string
+) =>
+  request({
+    url: `/bg-style-exhibition/${id}`,
     method: "POST",
     data,
   });
