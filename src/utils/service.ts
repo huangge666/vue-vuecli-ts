@@ -36,7 +36,7 @@ function createService() {
             return apiData;
           default:
             // 不是正确的 code
-            ElMessage.error(apiData.msg || "Error");
+            ElMessage.error(apiData.msg || apiData.message || "Error");
             return Promise.reject(new Error("Error"));
         }
       }

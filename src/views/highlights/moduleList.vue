@@ -64,7 +64,7 @@
       </el-table>
       <el-pagination class="mt10 justify-end"
                      v-model:currentPage="condition.page"
-                     v-model:page-size="condition.pageSize"
+                     v-model:page-size="condition.size"
                      :background="true"
                      layout="total, prev, pager, next"
                      :total="+state.dataInfo.total"
@@ -77,6 +77,7 @@
       <module-detail v-if="state.showD"
                      key="ModuleDetail"
                      ref="ModuleDetailRef"
+                     :params="params"
                      @close="state.showD=false;getDataInfo(condition.page)"></module-detail>
     </base-form-dialog>
 
@@ -101,14 +102,14 @@ const { params } = toRefs(state);
 
 let condition = ref<any>({
   page: 1,
-  pageSize: 10,
+  size: 10,
 });
 
 const ModuleDetailRef = ref();
 
 const getDataInfo = async (page = 1, pageSize = 10) => {
   condition.value.page = page;
-  condition.value.pageSize = pageSize;
+  condition.value.size = pageSize;
   const { data } = await getHighlightList({
     current: page,
     size: pageSize,
@@ -130,7 +131,7 @@ const handleSelectionChange = (e: Object[]) => {
 };
 
 const del = (rows: object[]) => {
-  if(rows.length === 0){
+  if (rows.length === 0) {
     ElMessage.warning("未选中任何行");
     return;
   }

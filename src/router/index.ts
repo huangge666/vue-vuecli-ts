@@ -80,32 +80,53 @@ export const asyncRoutes: Array<RouteRecordRaw> = [
     ],
   },
   {
-    path: "/highlights",
+    path: "/3dview",
     component: Layout,
-    redirect: "/highlights/list",
-    name: "Highlights",
+    redirect: "highlights/list",
+    name: "3dview",
     meta: {
-      title: "风采",
-      icon: "highlight",
+      title: "3D全景",
+      icon: "VR",
       // roles: ['admin', 'editor'], // 可以在根路由中设置角色
       alwaysShow: true, // 将始终显示根菜单
     },
     children: [
       {
-        path: "moduleList",
-        component: () => import("@/views/highlights/moduleList.vue"),
-        name: "ModuleListHighlights",
+        path: "highlights",
+        redirect: "/highlights/list",
+        name: "Highlights",
         meta: {
-          title: "模块列表",
-          // roles: ['admin'] // 或者在子导航中设置角色
+          title: "风采",
+          icon: "highlight",
+          // roles: ['admin', 'editor'], // 可以在根路由中设置角色
+          alwaysShow: true, // 将始终显示根菜单
         },
+        children: [
+          {
+            path: "moduleList",
+            component: () => import("@/views/highlights/moduleList.vue"),
+            name: "ModuleListHighlights",
+            meta: {
+              title: "模块",
+              // roles: ['admin'] // 或者在子导航中设置角色
+            },
+          },
+          {
+            path: "videoList",
+            component: () => import("@/views/highlights/videoList.vue"),
+            name: "VideoListHighlights",
+            meta: {
+              title: "视频",
+            },
+          },
+        ],
       },
       {
-        path: "videoList",
-        component: () => import("@/views/highlights/videoList.vue"),
-        name: "VideoListHighlights",
+        path: "commentList",
+        component: () => import("@/views/comment/commentList.vue"),
+        name: "CommentList",
         meta: {
-          title: "视频列表",
+          title: "评论",
         },
       },
     ],

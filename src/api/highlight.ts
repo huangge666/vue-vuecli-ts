@@ -23,7 +23,7 @@ export function getHighlightList(params: IHighlightRequestData) {
   });
 }
 
-/** 获取风采详情 */
+/** 获取风采列表 */
 export function getHighlightInfo(id: string) {
   return request({
     url: `/bg-style-exhibition/${id}`,
@@ -39,7 +39,7 @@ export const addBgStyleExhibition = (data: IBgStyleExhibitionData) =>
     data,
   });
 
-/* 编辑风采列表 */
+/* 新增风采列表 */
 export const editBgStyleExhibition = (
   data: IBgStyleExhibitionData,
   id: string
